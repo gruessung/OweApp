@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <string name="app_name">Ich leihe dir...</string>
+    <string name="menu_settings">Einstellungen</string>
+    <string name="title_activity_main">@string/app_name</string>
+    <string name="menu_add">Neu</string>
+    <string name="menu_save">Speichern</string>
+    <string name="menu_delete">Löschen</string>
+    <string name="delete">Gelöscht.</string>
+    
+    <string name="title_new">Neu</string>
+    <string name="type">Ich...</string>
+    <string name="contact">von</string>
+    <string name="contactHint">Vorname Nachname</string>
+    <string name="what">Was?</string>
+    <string name="desc">Beschreibung</string>
+    <string name="empty">Bitte die leeren Felder füllen.</string>
+    
+    <string name="saved">Gespeichert.</string>
+    
+    <string name="has_owe">Ich habe mir ausgeliehen</string>
+	<string name="owe_to">Ich leihe dir</string>    
+	
+	<string name="mailtext_has_owe">Du schuldest %1$s noch etwas: %2$s ; Bis zum: %3$s</string>
+	
+    <string name="mailtext_owe_to">Du schuldest mir noch etwas: %1$s ; Bis zum: %2$s</string>
+	
+	<string name="show_hase_owe">Du schuldest</string>
+    <string name="show_owe_to">Er/Sie schuldet dir</string>
+    
+    <string name="selectContact">Suchen</string>
+    <string name="date">Stichtag</string>
+    <string name="remind">Erstelle Kalendereintrag</string>
+    
+    <!--  spinner -->
+ 	<string-array name="spinner">
+		<item>@string/has_owe</item>
+		<item>@string/owe_to</item>
+	</string-array>
+	
+ 	
+ 	 	
+ 	<!--  Rate -->
+    <string name="rate_txt1">Wenn dir </string>
+    <string name="rate_txt2"> gefällt, so sei doch so nett und bewerte die App im Play Store. Vielen Dank für deine Hilfe!</string>
+    <string name="rate_btn_rate">Bewerte </string>
+    <string name="rate_btn_later">Erinnere mich später</string>
+    <string name="rate_btn_no">Danke, nein</string>
+ 	
+</resources>

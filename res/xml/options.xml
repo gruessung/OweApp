@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <PreferenceCategory android:title="Kalender">
+        <CheckBoxPreference android:key="defaultKalender" android:summary="Standardeinstellung für neue Items" android:title="Kalendereintrag erstellen" />
+        
+        <ListPreference android:key="kalender" android:title="Standardkalender" android:entryValues="@array/spinner" android:entries="@array/spinner"/>
+    </PreferenceCategory><PreferenceCategory android:title="Beta" android:summary="Ich leihe dir - V2" android:enabled="false">
+        <CheckBoxPreference android:title="Hinweise gelesen?" android:summary="Zu finden unter http://beta.gvisions.de" android:key="betahinweise"/>
+        <CheckBoxPreference android:title="Version 2 aktivieren" android:summary="Achtung: Die Ansicht könnte Fehler enthalten"/>
+    </PreferenceCategory>
+    
+
+</PreferenceScreen>
