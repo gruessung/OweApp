@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.gvisions.oweapp"
-    android:versionCode="9"
-    android:versionName="1.7.1" >
+    android:versionCode="10"
+    android:versionName="1.8" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -30,8 +30,7 @@
         <activity android:name="ShowItem"></activity>
         <activity android:name="PreferenceScreen"></activity>
 
-        <meta-data android:name="com.google.android.backup.api_key"
-    			   android:value="AEdPqrEAAAAIk0x8oAaU-HfIbjQ08jNuKlmpFhP_e3uo9gEJmg" />
+
         <receiver android:name="TimeAlarm"></receiver>
         <activity android:name="FragmentActivity"></activity>
     </application>
