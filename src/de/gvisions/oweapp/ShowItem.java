@@ -5,7 +5,7 @@ import java.io.InputStream;
 
 
 import android.annotation.TargetApi;
-import android.app.ActionBar; 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Intent;
@@ -68,11 +68,11 @@ public class ShowItem extends Activity {
         tvDatum = (TextView) findViewById(R.id.tvDatum);
         
         	
-        tvShow1.setText(leihr);	
-    	tvShow2.setText(name);
+        tvShow2.setText(leihr);
+    	tvShow1.setText(name);
     	tvShow3.setText(objekt);    
     	tvShow4.setText(beschreibung);  
-    	tvDatum.setText(datum2);
+    	tvDatum.setText( getString(R.string.date) + ": " + datum2);
     	
 		QuickContactBadge contactBadge = (QuickContactBadge) findViewById(R.id.contact);
 

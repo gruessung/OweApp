@@ -60,7 +60,7 @@ public class FragmentList extends ListFragment {
 	}
 	
 	/**
-	 * Lädt die Daten aus der DB und speichert diese in eizelnen ListElements im Array
+	 * Lï¿½dt die Daten aus der DB und speichert diese in eizelnen ListElements im Array
 	 */
     private void buildData() {
         String typeString = "";
@@ -70,11 +70,11 @@ public class FragmentList extends ListFragment {
         {
         	if (result.getString(5).equals("0"))
         	{
-        		typeString = getString(R.string.has_owe);
+        		typeString = getString(R.string.show_hase_owe);
         	}
         	else
         	{
-        		typeString = getString(R.string.owe_to);
+        		typeString = getString(R.string.show_owe_to);
         	}
 
         	for (int i = 0; i < result.getColumnCount(); i++)
@@ -91,12 +91,12 @@ public class FragmentList extends ListFragment {
 							result.getString(result.getColumnIndex(result.getColumnName(2))), //Objekt
 							result.getString(result.getColumnIndex(result.getColumnName(6))), //Datum
 							typeString, //Leihrichtung
-							result.getString(1)//Kontakt für Bagde
+							result.getString(1)//Kontakt fï¿½r Bagde
 							) 
 					);	
         	}
         
-        connection.close();
+
 
       }
 
@@ -130,7 +130,7 @@ public class FragmentList extends ListFragment {
     	public String objekt;
     	
     	/**
-    	 * Datum der Rückgabe
+    	 * Datum der Rï¿½ckgabe
     	 */
     	public String datum;
     	
@@ -141,7 +141,7 @@ public class FragmentList extends ListFragment {
     	public String leihRichtung;
     	
     	/**
-    	 * Kontakt für ContactBadge
+    	 * Kontakt fï¿½r ContactBadge
     	 */
     	public String kontakt;
     	
@@ -201,7 +201,7 @@ public class FragmentList extends ListFragment {
   			
   			QuickContactBadge contactBadge = (QuickContactBadge) view.findViewById(R.id.quickContactBadge1);
   			
-  			//Daten übergeben an View Elemente
+  			//Daten ï¿½bergeben an View Elemente
   			name.setText(datensatz.name);
   			objekt.setText(datensatz.objekt);
   			datum.setText(datensatz.datum);

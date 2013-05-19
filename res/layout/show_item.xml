@@ -22,9 +22,12 @@
             <TextView
                 android:id="@+id/tvShow1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="spaceholder"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:layout_height="fill_parent"
+                android:text="name"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_weight="0.19"/>
 
             <View
                 android:layout_width="1dp"

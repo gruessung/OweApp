@@ -25,8 +25,8 @@
 	
     <string name="mailtext_owe_to">Du schuldest mir noch etwas: %1$s ; Bis zum: %2$s</string>
 	
-	<string name="show_hase_owe">Du schuldest</string>
-    <string name="show_owe_to">Er/Sie schuldet dir</string>
+	<string name="show_hase_owe">Du schuldest ihm/ihr noch etwas.</string>
+    <string name="show_owe_to">Er/Sie schuldet dir noch etwas.</string>
     
     <string name="selectContact">Suchen</string>
     <string name="date">Stichtag</string>
