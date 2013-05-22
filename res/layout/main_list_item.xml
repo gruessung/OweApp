@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+
+
+    <QuickContactBadge
+        android:id="@+id/quickContactBadge1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:src="@drawable/ic_default"
+        android:layout_marginRight="20dp"
+        />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@+id/name"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+
+        <TextView
+            android:id="@+id/anzahlV"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@+id/anzahlV"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+
+
+
+        <TextView
+            android:id="@+id/anzahlAusg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@+id/anzahlAusg"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+    </LinearLayout>
+
+</LinearLayout> 

@@ -154,12 +154,13 @@ public class ShowItem extends Activity {
        switch (item.getItemId()) 
        {        
           case android.R.id.home:            
-             Intent intent = new Intent(this, MainActivity.class);            
+             Intent intent = new Intent(this, ListActivity.class);
+             intent.putExtra("kontakt", kontakt);
              intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); 
              startActivity(intent);            
              return true;  
           case R.id.menu_delete:            
-              //L�schen
+              //Löschen
         	  connection.delete("owe", "id IN ('"+itemID+"')", null);
         	  Toast.makeText(this, getString(R.string.delete), Toast.LENGTH_SHORT).show();
               

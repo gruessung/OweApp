@@ -168,31 +168,7 @@ public class NewItem extends Activity {
             	id = data.getData().getLastPathSegment();  
             	idLong = data.getData().toString();
             	contactUri = data.getData();    
-            	
-            	Log.d("ICH", contactUri.toString());
-            	
 
-            	
-            	// TODO auf meinem handy wird immer thleistner@gmx.de gewählt statt dem Namen des eigentlichen Kontakts!
-            	//KontaktURI wird aber richtig gesprichert, d.h. das korrekte Bild wird in FragmentList geladen
-            	//Eventuell darüber an namen kommen?
-//            	String whereName = ContactsContract.Data.MIMETYPE + " = ?";
-//                String[] whereNameParams = new String[]{ ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE };
-//                
-//                Cursor nameCur = getContentResolver().query(
-//                		ContactsContract.Data.CONTENT_URI, 
-//                		null, 
-//                		whereName, 
-//                		whereNameParams, 
-//                		ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME_ALTERNATIVE);
-//                while (nameCur.moveToNext()) {
-//                    String display = nameCur.getString(nameCur.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME_ALTERNATIVE
-//                    		));
-//                    name = display;  
-//                    Log.v("ICH", "Got name: " + name);  
-//                    fromTo.setText(name);
-//                }
-//                nameCur.close(); 
             	
             	String id, name1, phone, hasPhone;
             	int idx;
@@ -212,23 +188,14 @@ public class NewItem extends Activity {
             	    fromTo.setText(name);
             	}
             	
-            	
-                
-//                int NameIdx = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY);  
-//                // let's just get the first email  
-//                if (cursor.moveToFirst()) {  
-//                    name = cursor.getString(NameIdx);  
-//                    Log.v("ICH", "Got name: " + name);  
-//                    fromTo.setText(name);
-//                } else {  
-//                    Toast.makeText(this, "Kein Name gefunden, bitte manuell eingeben.", Toast.LENGTH_SHORT).show();  
-//                } 
+
             	
                 break;  
             }  
         } else {  
             // gracefully handle failure  
-            Log.w("ICH", "Warning: activity result not ok");  
+            Log.w("ICH", "Warning: activity result not ok");
+            Toast.makeText(this, "Warning: activity result not ok" , Toast.LENGTH_SHORT).show();
         }  
     }
 
@@ -274,26 +241,9 @@ public class NewItem extends Activity {
 	              
 	              
 	              
-	              //Alarm setzen
+	              //Kalendereintrag
         		  if (calendar.isChecked())
         		  {
-//        			  Date dateNotif = null;
-//        			  dateNotif = new Date (year, month, day, 11, 51);
-//        			  
-//        			  	//Create an offset from the current time in which the alarm will go off.
-//        		        Calendar cal = Calendar.getInstance();
-//        		        cal.add(Calendar.SECOND, 5);
-//        		        //cal.add(Calendar.DATE, dateNotif.getDate());
-//        		 
-//        		        //Create a new PendingIntent and add it to the AlarmManager
-//        		        Intent intent_ = new Intent(this, AlarmReceiverActivity.class);
-//        		        PendingIntent pendingIntent = PendingIntent.getActivity(this,
-//        		            123456, intent_, PendingIntent.FLAG_CANCEL_CURRENT);
-//        		        AlarmManager am = 
-//        		            (AlarmManager)getSystemService(Activity.ALARM_SERVICE);
-//        		        am.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-//        		                pendingIntent);
-        			  
         		        Calendar cal = Calendar.getInstance();    
         		        String[] d = date.getText().toString().split(".");
         		        Log.i("STRING",date.getText().toString());
@@ -313,40 +263,6 @@ public class NewItem extends Activity {
         		    	{
         		    		share = getString(R.string.mailtext_owe_to, what.getText().toString(), datum);
         		    	}
-        		        
-//        		        String[] projection = new String[] { "_id", "name" };
-//        		        Uri calendars = Uri.parse("content://com.android.calendar/calendars");
-//        		             
-//        		        Cursor managedCursor =
-//        		           managedQuery(calendars, projection,
-//        		           null, null, null);
-//        		        if (managedCursor.moveToFirst()) {
-//        		        	 String calName; 
-//        		        	 
-//        		        	 String calId; 
-//        		        	 int nameColumn = managedCursor.getColumnIndex("name"); 
-//        		        	 int idColumn = managedCursor.getColumnIndex("_id");
-//        		        	 do {
-//        		        	    calName = managedCursor.getString(nameColumn);
-//        		        	    Log.i("KALENDER", calName);
-//        		        	    calId = managedCursor.getString(idColumn);
-//        		        	    Log.i("KALENDER", calId);
-//        		        	 } while (managedCursor.moveToNext());
-        		        	 
-//        		        	 ContentValues event = new ContentValues();
-//             		         event.put("calendar_id", 1);
-//             		         event.put("title", "Event Title");
-//             		         event.put("description", "Event Desc");
-//             		       	 event.put("eventLocation", "Event Location");
-//	             		     long startTime = new Date(year, month, day).getTime();
-//	             		     long endTime = new Date(year, month, day).getTime();
-//	             		     event.put("dtstart", startTime);
-//	             		     event.put("dtend", endTime);
-//	             		     event.put("allDay", 1);   // 0 for false, 1 for true
-//	             		     event.put("hasAlarm", 1); // 0 for false, 1 for true
-//	             		     event.put("eventTimezone", "Europe/London");
-//	             		     Uri eventsUri = Uri.parse("content://com.android.calendar/events");
-//	             		     Uri url = getContentResolver().insert(eventsUri, event);
 	             		     
 	             		     
         		        	// Construct event details
@@ -372,32 +288,7 @@ public class NewItem extends Activity {
 
         		        	 // Retrieve ID for new event
         		        	 String eventID = uri.getLastPathSegment();
-	             		     
-	             		     
-	             		     
-	             		     
-	             		     //Log.i("URL", url.toString());
-//        		        }
-//        		        else
-//        		        {
-//            		        Intent intentCal = new Intent(Intent.ACTION_EDIT);
-//            		        intentCal.setType("vnd.android.cursor.item/event");
-//            		        intentCal.putExtra("beginTime", cal.getTimeInMillis());
-//            		        intentCal.putExtra("allDay", true);
-//            		        //intent.putExtra("rrule", "FREQ=ONE");
-//            		        intentCal.putExtra("endTime",cal.getTimeInMillis()); //cal.getTimeInMillis()+60*60*1000
-//            		        intentCal.putExtra("title", share);
-//            		        startActivity(intentCal);
-//            		        
-//            		        Toast.makeText(this, "Kehren Sie mit dem Zurück-Button nach Erstellen des Termines zurück in die App.", Toast.LENGTH_LONG).show();
-//            			  
-//        		        }
-        		        
-        		        
-        		        
-        		        
 
-        			  //Log.d("ICH", String.valueOf(dateNotif.getTime()));
         		  }
 	              
 	              

@@ -1,5 +1,6 @@
 package de.gvisions.oweapp;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,15 +9,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 
-public class MainActivity extends Activity {
+public class ListActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment);
 
-        setContentView(R.layout.activity_main);
-        
-        AppRater.app_launched(this);
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
     
   @Override
@@ -25,18 +26,27 @@ public class MainActivity extends Activity {
       inflater.inflate(R.menu.activity_main, menu);
       return true;
   }
-  
-  @Override
+
+
+
+
+    @Override
   public boolean onOptionsItemSelected(MenuItem item) 
   {    
      switch (item.getItemId()) 
-     {        
-        case R.id.menu_add:            
-           Intent intent = new Intent(this, NewItem.class);            
-           startActivity(intent);            
+     {
+         case android.R.id.home:
+             Intent intent = new Intent(this, MainActivity.class);
+             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+             startActivity(intent);
+             return true;
+
+         case R.id.menu_add:
+           Intent intent2 = new Intent(this, NewItem.class);
+           startActivity(intent2);
            return true;     
         case R.id.menuOptions:
-        	Intent t = new Intent(MainActivity.this, PreferenceScreen.class);
+        	Intent t = new Intent(ListActivity.this, PreferenceScreen.class);
         	startActivity(t);
         	return true;
            

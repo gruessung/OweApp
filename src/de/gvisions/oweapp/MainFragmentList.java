@@ -1,9 +1,5 @@
 package de.gvisions.oweapp;
 
-import java.io.BufferedInputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
-
 import android.app.ListFragment;
 import android.content.ContentUris;
 import android.content.Context;
@@ -28,13 +24,17 @@ import android.widget.LinearLayout;
 import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
-public class FragmentList extends ListFragment {
+import java.io.BufferedInputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
+
+public class MainFragmentList extends ListFragment {
 	
 	SQLiteOpenHelper database;
 	SQLiteDatabase connection;
 	
 	//Array mit ListElements
-	ArrayList<ListElements> listElements;
+	ArrayList<MainListElements> mainListElements;
 	
 	//ListAdapter
 	private MyListAdapter myAdapter;
@@ -47,7 +47,7 @@ public class FragmentList extends ListFragment {
         database = new DatabaseHelper(getActivity().getApplicationContext());
         connection = database.getReadableDatabase();
         
-        listElements = new ArrayList<ListElements>();
+        mainListElements = new ArrayList<MainListElements>();
 
         buildData(); //Daten aus DB holen und in ArrayList speichern
         
@@ -64,34 +64,30 @@ public class FragmentList extends ListFragment {
 	 */
     private void buildData() {
         String typeString = "";
-        
-        Cursor result = connection.rawQuery("select * from owe WHERE contacturi = '"+getActivity().getIntent().getExtras().get("kontakt")+"'", null);
+        int anzahlVerliehen = 0, anzahlGeliehen = 0;
+
+        Cursor result = connection.rawQuery("SELECT sum(case when type = '0' then 1 else 0 end) geliehen, sum(case when type = '1' then 1 else 0 end) verliehen, fromTo, contacturi, type FROM owe GROUP BY fromTo;", null);
         while(result.moveToNext ())
         {
-        	if (result.getString(5).equals("0"))
-        	{
-        		typeString = getString(R.string.show_hase_owe);
-        	}
-        	else
-        	{
-        		typeString = getString(R.string.show_owe_to);
-        	}
+            for (int i = 0; i < result.getColumnCount(); i++)
+            {
+                Log.d("TAG", result.getColumnName(i) + " -- " + result.getString(i));
+            }
 
-        	for (int i = 0; i < result.getColumnCount(); i++)
-        	{
-        		Log.d("DB", result.getColumnName(i) + " -- " + result.getString(i) );
-        	}
+            anzahlGeliehen = result.getInt(0);
+
+        	anzahlVerliehen = result.getInt(1);
+
+
+            Log.d("TAGGV", String.valueOf(anzahlGeliehen) );
+            Log.d("TAGGV", String.valueOf(anzahlVerliehen));
         	
-        	
-        	this.listElements.add(
-					new ListElements(
-							result.getInt(0), //ID
-							result.getString(4),
-							result.getString(result.getColumnIndex(result.getColumnName(3))), //Name
-							result.getString(result.getColumnIndex(result.getColumnName(2))), //Objekt
-							result.getString(result.getColumnIndex(result.getColumnName(6))), //Datum
-							typeString, //Leihrichtung
-							result.getString(1)//Kontakt f�r Bagde
+        	this.mainListElements.add(
+					new MainListElements(
+							anzahlGeliehen,
+                            anzahlVerliehen,
+                            result.getString(2),
+							result.getString(3)//Kontakt f�r Bagde
 							) 
 					);	
         	}
@@ -105,15 +101,15 @@ public class FragmentList extends ListFragment {
   		private final LayoutInflater mInflater;
   		
   		public MyListAdapter() {
-  			mInflater = (LayoutInflater) FragmentList.this.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+  			mInflater = (LayoutInflater) MainFragmentList.this.getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
   		}
 
   		public int getCount() {
-  			return listElements.size();
+  			return mainListElements.size();
   		}
 
-  		public ListElements getItem(int position) {
-  			return listElements.get(position);
+  		public MainListElements getItem(int position) {
+  			return mainListElements.get(position);
   		}
 
   		public long getItemId(int position) {
@@ -121,28 +117,26 @@ public class FragmentList extends ListFragment {
   		}
 
   		public View getView(int position, View convertView, ViewGroup parent) {
-  			LinearLayout itemView = (LinearLayout) mInflater.inflate(R.layout.list_item, parent, false);
+  			LinearLayout itemView = (LinearLayout) mInflater.inflate(R.layout.main_list_item, parent, false);
   			bindView(itemView, position);
   			return itemView;
   		}
   		
   		private void bindView(LinearLayout view, int position) {
-  			ListElements datensatz = getItem(position);
+  			MainListElements datensatz = getItem(position);
   			view.setId((int) getItemId(position));
   			
   			// View Elemente suchen und belegen
-  			TextView name = (TextView) view.findViewById(R.id.fromTo);
-  			TextView objekt = (TextView) view.findViewById(R.id.what);
-  			TextView datum = (TextView) view.findViewById(R.id.datum);
-  			TextView leihRichtung = (TextView) view.findViewById(R.id.desc);
+  			TextView name = (TextView) view.findViewById(R.id.name);
+  			TextView anzahlV = (TextView) view.findViewById(R.id.anzahlV);
+  			TextView anzahlAusg = (TextView) view.findViewById(R.id.anzahlAusg);
   			
   			QuickContactBadge contactBadge = (QuickContactBadge) view.findViewById(R.id.quickContactBadge1);
   			
   			//Daten �bergeben an View Elemente
   			name.setText(datensatz.name);
-  			objekt.setText(datensatz.objekt);
-  			datum.setText(datensatz.datum);
-  			leihRichtung.setText(datensatz.leihRichtung);
+  			anzahlV.setText("Sie/Er schuldet dir noch " + String.valueOf(datensatz.anzahlVerliehen) + " Objekte");
+  			anzahlAusg.setText("Du schuldest ihm/ihr noch " + String.valueOf(datensatz.anzahlAusgeliehen) + " Objekte");
   			
   			
   			//ContactBadge
@@ -172,11 +166,12 @@ public class FragmentList extends ListFragment {
   		}
 
   		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-  			
-  			FragmentDetail fragment = (FragmentDetail)getFragmentManager().findFragmentById(R.id.fragment_detail);
+
+
+//  			FragmentDetail fragment = (FragmentDetail)getFragmentManager().findFragmentById(R.id.fragment_list);
   	      
-  			ListElements item = getItem(position);
-  	      
+  			MainListElements item = getItem(position);
+  	      /*
 		      if (fragment != null && fragment.isInLayout()) {
 		
 		      	fragment.setType(item.leihRichtung);
@@ -188,19 +183,14 @@ public class FragmentList extends ListFragment {
 		          
 		           
 		
-		      } else {
+		      } else {*/
 		        
-		        Intent intent = new Intent(getActivity().getApplicationContext(), ShowItem.class);   
-		        intent.putExtra("leihrichtung", item.leihRichtung);
-		        intent.putExtra("name", item.name);
-		        intent.putExtra("objekt", item.objekt);
-		        intent.putExtra("beschreibung", item.beschreibung);
-		        intent.putExtra("datum", item.datum);
-		        intent.putExtra("id", item.id);
+		        Intent intent = new Intent(getActivity().getApplicationContext(), ListActivity.class);
 		        intent.putExtra("kontakt", item.kontakt);
 		        startActivity(intent); 
 		
-		      }
+		     // }
+
   		}
 
 
