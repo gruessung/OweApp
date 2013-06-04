@@ -5,7 +5,7 @@
         
     </PreferenceCategory>
     <PreferenceCategory android:title="Über" android:summary="Ich leihe dir" android:enabled="false">
-        <EditTextPreference android:title="Version" android:summary="2.0" android:key="betahinweise"/>
+        <EditTextPreference android:title="Version" android:summary="2.0.1" android:key="betahinweise"/>
         <EditTextPreference android:title="Autor" android:summary="Alexander Grüßung"/>
     </PreferenceCategory>
     
