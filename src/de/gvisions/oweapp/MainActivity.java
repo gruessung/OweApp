@@ -8,14 +8,19 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 
+
+
 public class MainActivity extends Activity {
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        
+
+
         AppRater.app_launched(this);
     }
     
@@ -38,6 +43,7 @@ public class MainActivity extends Activity {
         case R.id.menuOptions:
         	Intent t = new Intent(MainActivity.this, PreferenceScreen.class);
         	startActivity(t);
+
         	return true;
            
         default:            

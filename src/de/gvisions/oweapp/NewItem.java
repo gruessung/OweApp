@@ -32,6 +32,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -43,9 +44,11 @@ public class NewItem extends Activity {
 	EditText Desc;
 	EditText date;
 	
-	Button select;
+	ImageButton select;
 	
 	CheckBox calendar;
+
+    ImageButton ibutton;
 	
 	String id = null; //Kontakt ID
 	String idLong = null;
@@ -101,11 +104,13 @@ public class NewItem extends Activity {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         
-        select = (Button) findViewById(R.id.button1);
+        select = (ImageButton) findViewById(R.id.button1);
         date = (EditText) findViewById(R.id.etDate);
         calendar = (CheckBox) findViewById(R.id.cbCalendar);
+
+        ibutton = (ImageButton) findViewById(R.id.imageButton);
         
-        Boolean cbCal = prefs.getBoolean("defaultKalender",true);
+        Boolean cbCal = prefs.getBoolean("defaultKalender",false);
         if (cbCal == false)
         {
         	calendar.setChecked(false);
@@ -122,13 +127,15 @@ public class NewItem extends Activity {
 		day = c.get(Calendar.DAY_OF_MONTH);
         
 
-        date.setClickable(true);
-        date.setOnClickListener(new OnClickListener() {
-			
-			public void onClick(View v) {
-				showDialog(DATE_DIALOG_ID);
-			}
-		});
+        date.setEnabled(false);
+
+        ibutton.setClickable(true);
+        ibutton.setOnClickListener(new OnClickListener() {
+
+            public void onClick(View v) {
+                showDialog(DATE_DIALOG_ID);
+            }
+        });
         
         
         select.setOnClickListener(new OnClickListener() {
@@ -195,7 +202,7 @@ public class NewItem extends Activity {
         } else {  
             // gracefully handle failure  
             Log.w("ICH", "Warning: activity result not ok");
-            Toast.makeText(this, "Warning: activity result not ok" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Abbruch durch Benutzer" , Toast.LENGTH_SHORT).show();
         }  
     }
 
@@ -223,8 +230,15 @@ public class NewItem extends Activity {
         	  String sWhat = what.getText().toString();
         	  String contact = fromTo.getText().toString();
         	  String sDesc = Desc.getText().toString();
-        	  
-        	  if (sWhat.isEmpty() || contact.isEmpty() || date.getText().toString().isEmpty())
+              String sDate = date.getText().toString();
+
+              sWhat = sWhat.replace("'", "");
+              sDesc = sDesc.replace("'", "");
+
+
+
+
+              if (sWhat.isEmpty() || contact.isEmpty())
         	  {
         		  Toast.makeText(this, getString(R.string.empty), Toast.LENGTH_SHORT).show();
         	  }
@@ -233,8 +247,8 @@ public class NewItem extends Activity {
         		 
         		  //DB schreiben
         		  Log.d("SPINNER", String.valueOf(spinnerPos));
-	        	  connection.execSQL("insert into owe(deadline, type, what, fromto, desc, contacturi) values (\'"+date.getText().toString()+"\',\'"+spinnerPos+"\', \'"+sWhat+"\', \'"+contact+"\', \'"+sDesc+"\', \'"+contactUri+"\');");
-	        	  Toast.makeText(this, getString(R.string.saved) + " " + date.getText().toString(), Toast.LENGTH_SHORT).show();
+	        	  connection.execSQL("insert into owe(deadline, type, what, fromto, desc, contacturi) values (\'"+sDate+"\',\'"+spinnerPos+"\', \'"+sWhat+"\', \'"+contact+"\', \'"+sDesc+"\', \'"+contactUri+"\');");
+	        	  Toast.makeText(this, getString(R.string.saved), Toast.LENGTH_SHORT).show();
 	        	  Intent intent2 = new Intent(this, MainActivity.class);            
 	              intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); 
 	              startActivity(intent2); 
@@ -242,7 +256,7 @@ public class NewItem extends Activity {
 	              
 	              
 	              //Kalendereintrag
-        		  if (calendar.isChecked())
+        		  if (calendar.isChecked() && !sDate.isEmpty())
         		  {
         		        Calendar cal = Calendar.getInstance();    
         		        String[] d = date.getText().toString().split(".");
