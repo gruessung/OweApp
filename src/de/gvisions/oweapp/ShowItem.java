@@ -3,8 +3,6 @@ package de.gvisions.oweapp;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 
-
-import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.ContentUris;
@@ -15,7 +13,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.Menu;
@@ -169,6 +166,7 @@ public class ShowItem extends Activity {
               startActivity(intent2);  
         	  
         	  return true; 
+
           default:            
              return super.onOptionsItemSelected(item);    
        }

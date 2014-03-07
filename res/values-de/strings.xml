@@ -32,12 +32,52 @@
     <string name="date">Stichtag</string>
     <string name="remind">Erstelle Kalendereintrag</string>
     
+    
+    <string name="deleteCardInfo">Wische eine Karte um den Eintrag zu bearbeiten.</string>
+    <string name="noData">Es gibt nichts zum anzeigen :-)</string>
+    <string name="deleteComplete">Gelöscht</string>
+    <string name="deleteNoData">Nene :-) Hier gibt es nichts.</string>
+    
+    <string name="card1">Du hast noch %1$s Objekte bei dir.</string>
+    <string name="card2">Du hast %1$s Objekte verliehen.</string>
+    
+    <string name="backupSuccess">Backup erfolgreich. Datei gvisions.backup.xml liegt im internen Speicher.</string>
+    <string name="backupFailed">Backup fehlgeschlagen.</string>
+    <string name="restoreSuccess">Daten wiederhergestellt.</string>
+    <string name="restoreFailed">Fehler beim Wiederherstellen.</string>
+    
+    <string name="about">Über</string>
+    <string name="summary">Standardeinstellung für neue Items</string>
+    <string name="calendar">Kalender</string>
+    
+    
+    
+        <!--  Navigation -->
+    <string name="survey">Nutzerumfrage</string>
+    <string name="contact">Schreibe mir!</string>
+    <string name="settings">Einstellungen</string>
+    <string name="login">Login</string>
+    
+    <string name="survey_u">Auswertung online</string>
+    <string name="contact_u">Bei Fragen und Anregungen</string>
+    <string name="settings_u">personalisiere dir die App</string>
+    <string name="login_u">nicht eingeloggt</string>
+    
+    <!--  Das ist neu -->
+	<string name="version_new">Das ist neu in Version</string>
+	<string name="version_text">Dieses Update übersetzt die App vollständig ins Englische. Aber keine Sorge, bald kommen neu Funktionen ;-)</string>
+	<string name="new_text">Neu</string>
+	<string name="new_swipe">Um einen Beitrag zu bearbeiten, klicke darauf.\nZum löschen, schiebe ihn einfach weg.</string> <!-- "Um einen Eintrag zu editieren, klicke auf diesen.\nUm einen Eintrag zu löschen, wische diesen einfach weg." -->
+    
+    
+    
     <!--  spinner -->
  	<string-array name="spinner">
 		<item>@string/has_owe</item>
 		<item>@string/owe_to</item>
 	</string-array>
 	
+ 	
  	
  	 	
  	<!--  Rate -->

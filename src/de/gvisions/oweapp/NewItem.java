@@ -1,7 +1,6 @@
 package de.gvisions.oweapp;
 
 
-import java.io.InputStream;
 import java.util.Calendar;
 
 import android.app.ActionBar;
@@ -9,7 +8,6 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.ContentResolver;
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,7 +26,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -132,7 +129,8 @@ public class NewItem extends Activity {
         ibutton.setClickable(true);
         ibutton.setOnClickListener(new OnClickListener() {
 
-            public void onClick(View v) {
+            @SuppressWarnings("deprecation")
+			public void onClick(View v) {
                 showDialog(DATE_DIALOG_ID);
             }
         });
@@ -159,6 +157,15 @@ public class NewItem extends Activity {
         
         database = new DatabaseHelper(this);
         connection = database.getWritableDatabase();
+        
+        
+        
+        
+        
+        
+        
+
+        
 
     }
     
@@ -202,7 +209,6 @@ public class NewItem extends Activity {
         } else {  
             // gracefully handle failure  
             Log.w("ICH", "Warning: activity result not ok");
-            Toast.makeText(this, "Abbruch durch Benutzer" , Toast.LENGTH_SHORT).show();
         }  
     }
 
@@ -220,9 +226,7 @@ public class NewItem extends Activity {
        switch (item.getItemId()) 
        {        
           case android.R.id.home:            
-             Intent intent = new Intent(this, MainActivity.class);            
-             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); 
-             startActivity(intent);            
+             finish();
              return true;  
           case R.id.menu_save:            
               //Daten sammeln
@@ -247,11 +251,11 @@ public class NewItem extends Activity {
         		 
         		  //DB schreiben
         		  Log.d("SPINNER", String.valueOf(spinnerPos));
+        		  sWhat.replace(",", ".");
+        		  sDesc.replace(",", ".");
 	        	  connection.execSQL("insert into owe(deadline, type, what, fromto, desc, contacturi) values (\'"+sDate+"\',\'"+spinnerPos+"\', \'"+sWhat+"\', \'"+contact+"\', \'"+sDesc+"\', \'"+contactUri+"\');");
 	        	  Toast.makeText(this, getString(R.string.saved), Toast.LENGTH_SHORT).show();
-	        	  Intent intent2 = new Intent(this, MainActivity.class);            
-	              intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); 
-	              startActivity(intent2); 
+	        	  
 	              
 	              
 	              
@@ -304,7 +308,7 @@ public class NewItem extends Activity {
         		        	 String eventID = uri.getLastPathSegment();
 
         		  }
-	              
+	              finish();
 	              
         	  }
         	  

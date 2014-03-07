@@ -1,7 +1,13 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/menu_add"
-          android:icon="@drawable/ic_action_add"
-          android:title="@string/menu_add"
-          android:showAsAction="always|withText" android:enabled="true" android:visible="true"/>
-    <item android:id="@+id/menuOptions" android:title="Optionen"></item>
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:icon="@drawable/ic_action_add" android:enabled="true" android:id="@+id/menu_add" android:visible="true" android:title="@string/menu_add" android:showAsAction="always|withText" />
+    <item android:id="@+id/menu22" android:title="Backup">
+        <menu>
+            <item android:id="@+id/restore" android:title="Restore" />
+            <item android:id="@+id/backup" android:title="Backup" />
+        </menu>
+    </item>
+
+    <item android:id="@+id/bewerten" android:title="App bewerten" />
 </menu>

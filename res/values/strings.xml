@@ -1,8 +1,8 @@
 <resources>
 
-    <string name="app_name">OweApp</string>
+    <string name="app_name">I owe you</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">OweApp</string>
+    <string name="title_activity_main">@string/app_name</string>
     <string name="menu_add">Add</string>
     <string name="menu_save">Save</string>
     <string name="menu_delete">Delete</string>
@@ -31,7 +31,22 @@
     <string name="date">Date</string>
     <string name="remind">Remind me!</string>
     
-    <string name="remind_share">Remind!</string>
+    <string name="deleteCardInfo">Swipe card to edit entry</string>
+    <string name="noData">no data</string>
+    <string name="deleteComplete">Deleted</string>
+    <string name="deleteNoData">Delete: no data found.</string>
+
+    <string name="card1">You still own %1$s objects from others.</string>
+    <string name="card2">You lent %1$s objects.</string>
+    
+    <string name="backupSuccess">Backup successful. File gvisions.backup.xml placed at internal storage.</string>
+    <string name="backupFailed">Backup failed.</string>
+    <string name="restoreSuccess">Restore successful.</string>
+    <string name="restoreFailed">Restore failed.</string>
+    
+    <string name="about">About</string>
+    <string name="summary">Default setting for new items</string>
+    <string name="calendar">Calendar</string>
     
 
     <!--  spinner -->
@@ -47,6 +62,23 @@
     <string name="rate_btn_rate">Rate </string>
     <string name="rate_btn_later">Remind me later!</string>
     <string name="rate_btn_no">No, thanks!</string>
+    
+    <!--  Navigation -->
+    <string name="survey">User Survey</string>
+    <string name="contact">Contact me!</string>
+    <string name="settings">Settings</string>
+    <string name="login">Login</string>
+    
+    <string name="survey_u">results online (german)</string>
+    <string name="contact_u"></string>
+    <string name="settings_u">personalisize the app</string>
+    <string name="login_u">Hello, Guest!</string>
+    
+    <!--  Das ist neu -->
+	<string name="version_new">Thats new in version</string>
+	<string name="version_text">This update translate the app full in english.</string>
+	<string name="new_text">New</string>
+	<string name="new_swipe">To edit a entry, tap on it.\nTo delete, wipe it out of the screen ;-)</string> <!-- "Um einen Eintrag zu editieren, klicke auf diesen.\nUm einen Eintrag zu löschen, wische diesen einfach weg." -->
     
     
     
@@ -84,5 +116,10 @@
 	<style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
 	    <item name="android:background">#33B5E5</item>
 	</style>
+	<string-array name="planets_array">
+	    
+		<item>Nutzerumfrage</item>
+		<item>Einstellungen</item>
+	</string-array>
     	
 </resources>
